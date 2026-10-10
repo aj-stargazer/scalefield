@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --color-bg: #09090b;
+  --color-background: #09090b;
+  --color-bg-elevated: #121214;
+  --color-bg-subtle: #1a1a1e;
+  --color-fg: #f4f4f5;
+  --color-foreground: #f4f4f5;
+  --color-muted: #a1a1aa;
+  --color-muted-foreground: #a1a1aa;
+  --color-subtle: #71717a;
+  --color-primary: #c8ccd4;
+  --color-primary-foreground: #09090b;
+  --color-secondary: #1a1a1e;
+  --color-secondary-foreground: #f4f4f5;
+  --color-accent: #c8ccd4;
+  --color-accent-foreground: #09090b;
+  --color-border: #26262c;
+  --color-input: #26262c;
+  --color-ring: #c8ccd4;
+  --color-card: #121214;
+  --color-card-foreground: #f4f4f5;
+  --color-popover: #161618;
+  --color-popover-foreground: #f4f4f5;
+  --color-destructive: #c45c5c;
+  --color-destructive-foreground: #f4f4f5;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius: 8px;
+
+  --shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-border-hover: 0 0 0 1px rgba(255, 255, 255, 0.13);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Object visuals — geometric, scale with their box */
+.obj-sphere {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset -18% -12% 28% rgba(0, 0, 0, 0.55),
+    inset 16% 12% 18% rgba(255, 255, 255, 0.18);
+}
+
+.obj-sphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 26%,
+    rgba(255, 255, 255, 0.38),
+    transparent 36%
+  );
+  pointer-events: none;
+}
+
+.sil .obj-sphere,
+.sil .obj-sphere::after,
+.sil .obj-star,
+.sil .obj-star::after {
+  background: #fff !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.sil img {
+  filter: brightness(0) invert(1);
+}
+
+.sil .obj-glow,
+.sil .obj-ring,
+.sil .obj-spot,
+.sil .obj-windows {
+  display: none !important;
+}
+
+.obj-mercury {
+  background: radial-gradient(circle at 40% 35%, #c4bbb2, #7a736c 55%, #4a4540);
+}
+.obj-venus {
+  background: radial-gradient(circle at 40% 32%, #f3e2b8, #d2b16a 50%, #8a6a32);
+}
+.obj-earth {
+  background:
+    radial-gradient(circle at 28% 30%, rgba(255, 255, 255, 0.35), transparent 22%),
+    radial-gradient(circle at 62% 58%, #2f7a3e 0 12%, transparent 13%),
+    radial-gradient(circle at 38% 48%, #3c8a4a 0 18%, transparent 19%),
+    radial-gradient(circle at 70% 36%, #d9e6ea 0 7%, transparent 8%),
+    radial-gradient(circle at 50% 50%, #1d6fb5, #0c3a72 70%, #071830);
+}
+.obj-mars {
+  background:
+    radial-gradient(circle at 30% 28%, #e8a888, transparent 28%),
+    radial-gradient(circle at 70% 22%, #efe7de 0 6%, transparent 7%),
+    radial-gradient(circle at 50% 50%, #c45a38, #7a2e1c 70%, #3a160e);
+}
+.obj-jupiter {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      #ead6b0 0 6%,
+      #c49a6a 6% 11%,
+      #efe3c4 11% 16%,
+      #a56b48 16% 21%,
+      #dcc39a 21% 27%,
+      #b8895c 27% 33%,
+      #e6d2aa 33% 40%,
+      #8d5a38 40% 46%,
+      #d7bd92 46% 55%,
+      #c9a87a 55% 70%,
+      #e8d4ac 70% 100%
+    );
+}
+.obj-saturn {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      #f0e4c4 0 10%,
+      #e2c98e 10% 18%,
+      #d4b56c 18% 28%,
+      #efe0b8 28% 40%,
+      #c9a45e 40% 52%,
+      #ead9a6 52% 100%
+    );
+}
+.obj-uranus {
+  background: radial-gradient(circle at 40% 32%, #d7f3f4, #7fc5cc 45%, #3a7f88);
+}
+.obj-neptune {
+  background: radial-gradient(circle at 38% 30%, #7fb4f0, #2a62c4 48%, #122a6a);
+}
+.obj-sun {
+  background: radial-gradient(circle at 42% 38%, #fff4c8, #ffcc4d 38%, #f08812 70%, #c45a00);
+}
+.obj-sirius {
+  background: radial-gradient(circle at 40% 34%, #ffffff, #d4e6ff 42%, #7aa4e0);
+}
+.obj-vega {
+  background: radial-gradient(circle at 40% 34%, #f4f8ff, #c9dcff 44%, #88a8e6);
+}
+.obj-pollux {
+  background: radial-gradient(circle at 40% 34%, #ffe0b0, #f0a24a 48%, #c45e12);
+}
+.obj-arcturus {
+  background: radial-gradient(circle at 40% 34%, #ffd0a0, #ff7a30 46%, #b83a00);
+}
+
+.obj-star {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset -16% -12% 24% rgba(0, 0, 0, 0.28);
+}
+.obj-star::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 28%,
+    rgba(255, 255, 255, 0.55),
+    transparent 38%
+  );
+  pointer-events: none;
+}
+
+.obj-glow {
+  position: absolute;
+  inset: -28%;
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.obj-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 210%;
+  height: 42%;
+  transform: translate(-50%, -50%) rotate(-18deg);
+  border-radius: 50%;
+  border: 7px solid transparent;
+  border-top-color: rgba(214, 196, 150, 0.95);
+  border-bottom-color: rgba(184, 164, 118, 0.55);
+  box-shadow: 0 0 0 10px rgba(198, 178, 128, 0.22);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sil .obj-ring {
+  display: block !important;
+  border-top-color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.obj-spot {
+  position: absolute;
+  width: 22%;
+  height: 14%;
+  border-radius: 50%;
+  background: #c45c3a;
+  filter: blur(1px);
+  opacity: 0.9;
+  left: 58%;
+  top: 48%;
+  pointer-events: none;
+}

@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Scale Field",
+      "hasCanvas": false,
+      "bodyTextLen": 832,
+      "bodyTextHash": "1e8059046830df147f9f6d43e39a13f9f50315acac6bfe036f3068b969f3b85b",
+      "bodyTextPrefix": "Scale Field Compare Contribute Silhouette Add objects to start c",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Scale Field",
+      "hasCanvas": false,
+      "bodyTextLen": 233,
+      "bodyTextHash": "c28258f7d5574bf17a4b289afd2fda7000d0663e677e7284e3525877890e3174",
+      "bodyTextPrefix": "Scale Field Compare Contribute Catalog Add objects to start comp",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
