@@ -15,7 +15,7 @@ function imageDir() {
   return path.join(rootDir(), "images");
 }
 function publicDir() {
-  return path.join(process.cwd(), "public", "objects", "community");
+  return path.join(process.cwd(), "static", "objects", "community");
 }
 
 export type DiskObject = {
@@ -78,7 +78,7 @@ function writePublicCopy(filename: string, bytes: Buffer) {
 /** Copy saved community rows back into a fresh database (preview restarts). */
 export async function restoreCommunitySnapshot(sql: Sql) {
   const objects = readManifest().filter((o) => o?.slug && SAFE_SLUG.test(o.slug));
-  for (const obj of objects.slice(0, 80)) {
+  for (const obj of objects.slice(0, 1000)) {
     try {
       const existing = await sql<{ slug: string }>`
         select slug from comparison_objects where slug = ${obj.slug} limit 1
@@ -155,7 +155,7 @@ export async function persistCommunitySnapshot(sql: Sql) {
   const keep = new Set<string>();
   const objects: DiskObject[] = [];
 
-  for (const row of rows.slice(0, 80)) {
+  for (const row of rows.slice(0, 1000)) {
     if (!SAFE_SLUG.test(row.slug)) continue;
     const bytes = toBuffer(row.image_data);
     let imageFile: string | null = null;
